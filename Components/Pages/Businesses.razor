@@ -1,0 +1,58 @@
+﻿@page "/restaurants"
+@using EcoMeal.Data.Entities
+@inject HttpClient http
+@attribute [StreamRendering]
+
+<h1>Restaurants</h1>
+
+@if (businesses == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <div class="slider-container" style="width:75%; overflow-x: scroll; overflow-y: hidden; margin: 20px; justify-self: center ">
+        <div class="slider-track" style="display: flex; flex-direction: row; gap: 15px">
+        @foreach (var business in businesses)
+        {
+            <div class="slide-item" style="flex-shrink: 0;">
+                <div class="card" style="width: 240px; height: 150px">
+                    <div style="height: 100px;width: 100%; display: flex; align-items: center; justify-content: center">
+                            <img src="https://www.kimp.io/wp-content/uploads/2023/08/KFC-logo-new.png" style="max-height: 100%; max-width: 100%; object-fit: contain;" />
+                    </div>
+                    <div class="card-body">
+                        <h4 class="card-title">@business.Name</h4>
+                    </div>
+                </div>
+           </div> 
+            
+        }
+        </div>
+    </div>
+}
+
+@code {
+
+    private List<Business> businesses;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            businesses = await http.GetFromJsonAsync<List<Business>>("api/business");
+        }
+        catch (Exception ex)
+        {
+            businesses = new List<Business>();
+            Console.WriteLine($"Could not load businesses: {ex.Message}");
+        }
+    }
+
+    private class Packet
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+    }
+}

@@ -3,6 +3,12 @@
 ##
 ## Get latest from `dotnet new gitignore`
 
+/Controllers/
+/Services/
+/Migrations/
+/Repositories/
+/DTOs/
+
 # dotenv files
 .env
 
