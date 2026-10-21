@@ -1,0 +1,23 @@
+## Visual Studio / IDE Files
+.vs/
+.vscode/
+*.suo
+*.user
+*.userossc
+*.sln.docstates
+
+## OS Generated Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+## Environmental & Secrets
+*.env
+*.env.local
+
+## Common Ignore Patterns (Fallback)
+**/bin/
+**/obj/
+**/node_modules/
+**/.angular/
+**/dist/
