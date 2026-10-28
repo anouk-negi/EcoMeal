@@ -11,10 +11,12 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.AspNetCore.Identity.UI.UIFrameworkAttribute("Bootstrap5")]
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("e8df4f2d-4d7c-4cce-8eb1-c4a96c009f38")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("EcoMeal.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d48933921a27dac6b8949f140865563b48447169")]
 [assembly: System.Reflection.AssemblyProductAttribute("EcoMeal.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("EcoMeal.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
