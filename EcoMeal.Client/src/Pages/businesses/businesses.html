@@ -1,0 +1,33 @@
+<div class="container">
+  <header class="header">
+    <h1>Registered Businesses</h1>
+    <p>Discover eco-friendly partners and restaurants near you.</p>
+  </header>
+
+  @if (businesses.length === 0) {
+    <div class="loading-state">
+      <p>Loading businesses or no businesses found...</p>
+    </div>
+  } @else {
+    <div class="card-grid">
+      @for (business of businesses; track business.id || business.ID) {
+        <div class="card">
+          <div class="card-image-wrapper">
+            <img 
+              [src]="business.imageURL || business.ImageURL || 'https://via.placeholder.com/400x200?text=EcoMeal'" 
+              [alt]="business.name || business.Name" 
+              class="card-image"
+            />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">{{ business.name || business.Name }}</h3>
+            <p class="card-description">{{ business.description || business.Description || 'No description provided.' }}</p>
+            <div class="card-footer">
+              <span class="card-address"> {{ business.address || business.Address }}</span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+  }
+</div>

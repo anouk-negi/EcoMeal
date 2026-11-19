@@ -1,0 +1,22 @@
+<nav class="navbar">
+      <div class="navbar-brand">
+        <a routerLink="/" class="logo">EcoMeal</a>
+      </div>
+      
+      <ul class="nav-links">
+        <li>
+          <a routerLink="/business" routerLinkActive="active">Business</a>
+        </li>
+
+        <ng-container *ngIf="!(authService.currentUser$ | async); else loggedInTpl">
+          <li>
+            <a routerLink="/login" routerLinkActive="active" class="login-btn">Login</a>
+          </li>
+        </ng-container>
+
+          <li>
+            <button (click)="authService.logout()" class="logout-btn">Logout</button>
+          </li>
+        </ng-template>
+      </ul>
+</nav>

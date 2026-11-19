@@ -1,0 +1,93 @@
+
+<div class="login-container">
+  <mat-card class="login-card">
+
+    <mat-card-header>
+      <mat-card-title>Welcome to EcoMeal</mat-card-title>
+      <mat-card-subtitle>
+        {{ isRegisterMode ? 'Create your account' : 'Sign in to continue' }}
+      </mat-card-subtitle>
+    </mat-card-header>
+
+    <mat-card-content>
+
+      <mat-tab-group
+        (selectedIndexChange)="selectRole($event === 0 ? 'Customer' : 'Business')">
+
+        <mat-tab label="Customer"></mat-tab>
+        <mat-tab label="Business"></mat-tab>
+
+      </mat-tab-group>
+
+      <form (ngSubmit)="onSubmit()" class="login-form">
+
+        <mat-form-field appearance="outline" *ngIf="isRegisterMode">
+          <mat-label>Full name</mat-label>
+          <input
+            matInput
+            name="name"
+            [(ngModel)]="name"
+            required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            required>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            type="password"
+            name="password"
+            [(ngModel)]="password"
+            required>
+        </mat-form-field>
+
+        <div class="password-requirements" *ngIf="isRegisterMode">
+          <p [class.valid]="hasMinLength">At least 8 characters</p>
+          <p [class.valid]="hasUppercase">One uppercase letter</p>
+          <p [class.valid]="hasLowercase">One lowercase letter</p>
+          <p [class.valid]="hasDigit">One digit</p>
+          <p [class.valid]="hasSpecialChar">One special character</p>
+        </div>
+
+        <p class="error-message" *ngIf="error">
+          {{ error }}
+        </p>
+
+        <button
+          mat-flat-button
+          color="primary"
+          type="submit"
+          class="submit-button"
+          [disabled]="loading || (isRegisterMode && !isPasswordValid)">
+
+          {{ loading ? 'Please wait...' :
+             (isRegisterMode ? 'Create account' : 'Login') }}
+
+        </button>
+
+      </form>
+
+      <div class="switch-mode">
+        <span>
+          {{ isRegisterMode
+            ? 'Already have an account?'
+            : "Don't have an account?" }}
+        </span>
+
+        <button mat-button type="button" (click)="toggleMode()">
+          {{ isRegisterMode ? 'Login' : 'Register' }}
+        </button>
+      </div>
+
+    </mat-card-content>
+  </mat-card>
+</div>
