@@ -169,13 +169,13 @@ namespace EcoMeal.Api.Data
     {
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasKey(u => u.ID);
+            builder.HasKey(u => u.Id);
 
             builder.Property(p => p.Email)
                .IsRequired()
                .HasMaxLength(255);
 
-            builder.Property(u => u.UserName)
+            builder.Property(u => u.Name)
                 .IsRequired()
                 .HasMaxLength(255);
         }

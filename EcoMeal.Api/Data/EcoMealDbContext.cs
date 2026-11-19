@@ -1,9 +1,11 @@
 ﻿using EcoMeal.Api.Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace EcoMeal.Api.Data
 {
-    public class EcoMealDbContext : DbContext
+    public class EcoMealDbContext : IdentityDbContext<User, IdentityRole<Guid>, Guid>
     {
         public EcoMealDbContext(DbContextOptions<EcoMealDbContext> options)
             : base(options) { }

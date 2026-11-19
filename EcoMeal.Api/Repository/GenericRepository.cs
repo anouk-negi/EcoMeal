@@ -6,8 +6,8 @@ namespace EcoMeal.Api.Repository
 {
     public class GenericRepository<T> : IGenericRepository<T> where T : class
     {
-        private readonly EcoMealDbContext _context;
-        private readonly DbSet<T> _dbSet;
+        protected readonly EcoMealDbContext _context;
+        private DbSet<T> _dbSet;
 
         public GenericRepository(EcoMealDbContext context)
         {
@@ -20,7 +20,7 @@ namespace EcoMeal.Api.Repository
             return await _dbSet.ToListAsync();
         }
 
-        public async Task<T?> GetByIdAsync(int id)
+        public async Task<T?> GetByIdAsync(Guid id)
         {
             return await _dbSet.FindAsync(id);
         }
