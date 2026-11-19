@@ -6,7 +6,7 @@
         Task<T?> GetByIdAsync(Guid id);
         Task InsertAsync(T entity);
         Task UpdateAsync(T entity);
-        Task DeleteAsync(int id);
+        Task DeleteAsync(Guid id);
         Task SaveAsync();
     }
 }

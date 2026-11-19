@@ -47,6 +47,7 @@ namespace EcoMeal.Api.Data
             services.AddScoped<IBusinessService, BusinessService>();
             services.AddScoped<IRoleRepository, RoleRepository>();
             services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IPackageService, PackageService>();
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
