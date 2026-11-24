@@ -1,0 +1,72 @@
+<div class="container">
+  <header class="header">
+    <h1>Available Packages</h1>
+    <p>Browse eco-friendly meal packages grouped by package type.</p>
+
+    @if (packageTypes.length > 0) {
+      <div class="filter-bar">
+        <button
+          type="button"
+          class="filter-btn"
+          [class.active]="selectedTypeId === 'ALL'"
+          (click)="selectType('ALL')"
+        >
+          All
+        </button>
+
+        @for (type of packageTypes; track type.id) {
+          <button
+            type="button"
+            class="filter-btn"
+            [class.active]="selectedTypeId === type.id"
+            (click)="selectType(type.id)"
+          >
+            {{ type.name }}
+          </button>
+        }
+      </div>
+    }
+  </header>
+
+  @if (packages.length === 0) {
+    <div class="loading-state">
+      <p>Loading packages or no packages found...</p>
+    </div>
+  } @else if (groupedPackages.length === 0) {
+    <div class="loading-state">
+      <p>No packages match the selected package type.</p>
+    </div>
+  } @else {
+    @for (group of groupedPackages; track group.typeId) {
+      <section class="type-section">
+        <h2 class="type-heading">{{ group.typeName }}</h2>
+
+        <div class="card-grid">
+          @for (pkg of group.items; track pkg.id) {
+            <div class="card">
+              <div class="card-image-wrapper">
+                <img
+                  [src]="pkg.imageURL || 'https://via.placeholder.com/400x200?text=EcoMeal'"
+                  [alt]="pkg.name || 'Package image'"
+                  class="card-image"
+                />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">{{ pkg.name || 'Unnamed Package' }}</h3>
+                <p class="card-description">
+                  {{ pkg.description || 'No description provided.' }}
+                </p>
+                <div class="card-footer">
+                  <span class="card-address">
+                    {{ pkg.businessName || 'Partner' }} •
+                    {{ pkg.price != null ? (pkg.price | currency) : 'TBD' }}
+                  </span>
+                </div>
+              </div>
+            </div>
+          }
+        </div>
+      </section>
+    }
+  }
+</div>

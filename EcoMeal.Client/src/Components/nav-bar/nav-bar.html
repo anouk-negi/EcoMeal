@@ -7,6 +7,9 @@
         <li>
           <a routerLink="/business" routerLinkActive="active">Business</a>
         </li>
+        <li>
+          <a routerLink="/packages" routerLinkActive="active">Packages</a>
+        </li>
 
         <ng-container *ngIf="!(authService.currentUser$ | async); else loggedInTpl">
           <li>
@@ -14,6 +17,7 @@
           </li>
         </ng-container>
 
+        <ng-template #loggedInTpl>
           <li>
             <button (click)="authService.logout()" class="logout-btn">Logout</button>
           </li>
